@@ -8,6 +8,7 @@ namespace TicTacToeForm
     public partial class TicTacToeForm : Form
     {
         private const int MAXPOINT = 9;
+        private const int SIZE = 150;
         private Button[,] buttons;
         private bool isXsTurn = true;
         private int _countPoint = 0;
@@ -28,10 +29,11 @@ namespace TicTacToeForm
                 {
                     buttons[i, j] = new Button
                     {
-                        Location = new Point(i * 100, j * 100),
-                        Size = new Size(100, 100),
+                        Location = new Point(i * SIZE, j * SIZE),
+                        Size = new Size(SIZE, SIZE),
                     };
                     buttons[i, j].Click += Button_Click;
+                    buttons[i, j].BackColor = Color.Green;
                     Controls.Add(buttons[i, j]);
                 }
             }
@@ -72,7 +74,7 @@ namespace TicTacToeForm
             button.BackgroundImageLayout = ImageLayout.Stretch;
             button.BackgroundImage = isXsTurn ? Resources.Resource.cross : Resources.Resource.circle;
             button.Text = isXsTurn ? "cross" : "circle";
-            if (button.Text == "circle") button.ForeColor = Color.Transparent;
+            if (button.Text == "circle") button.ForeColor = button.BackColor;
             _countPoint++;
             isXsTurn = !isXsTurn;
         }
